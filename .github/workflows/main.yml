@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Run a one-line script
+        run: zip -r tab-deduper-chrome-extension.zip 
+
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v2.3.1
+        with:
+          name: tab-deduper-chrome-extension
+          path: tab-deduper-chrome-extension.zip
+          
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        
+        with:
+          tag_name: 1.0.${{ github.run_number }}
+          body: |
+            CI Release for 1.0.${{ github.run_number }}
+          files: tab-deduper-chrome-extension.zip
+      
+     
