@@ -22,7 +22,7 @@ jobs:
         uses: actions/upload-artifact@v2.3.1
         with:
           name: tab-deduper-chrome-extension
-          path: ${{ github.workspace }}/tab-deduper-chrome-extension-${{ env.VERSION_NUMBER }}.zip
+          path: tab-deduper-chrome-extension-${{ env.VERSION_NUMBER }}.zip
           
       - name: Release
         uses: softprops/action-gh-release@v1
@@ -31,6 +31,6 @@ jobs:
           tag_name: ${{ env.VERSION_NUMBER }}
           body: |
             CI Release for ${{ env.VERSION_NUMBER }}
-          files: ${{ github.workspace }}/tab-deduper-chrome-extension-${{ env.VERSION_NUMBER }}.zip
+          files: tab-deduper-chrome-extension-${{ env.VERSION_NUMBER }}.zip
       
      
