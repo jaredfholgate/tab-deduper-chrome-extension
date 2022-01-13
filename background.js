@@ -8,7 +8,7 @@ chrome.tabs.onCreated.addListener((newTab) =>
     Object.assign(options, data.options);
     if(options.domains == undefined)
     {
-      options.domains = "calendar.google.com,mail.google.com";
+      options.domains = "calendar.google.com\r\nmail.google.com";
       chrome.storage.sync.set({options});
     }
 
