@@ -43,7 +43,6 @@ chrome.tabs.onCreated.addListener((newTab) =>
   
           for(var tabIndex = 0; tabIndex < window.tabs.length; tabIndex++) 
           {
-              
               var tab = window.tabs[tabIndex];
               if(newTabId != tab.id)
               {
@@ -54,9 +53,7 @@ chrome.tabs.onCreated.addListener((newTab) =>
                   if(!foundMatch)
                   {
                     foundMatch = true;
-                    var tabId = parseInt(newTab.id);
-                    tabsToRemove.push(tabId);
-
+                    tabsToRemove.push(newTabId);
                     chrome.tabs.update(tab.id, {active: true});
                     chrome.windows.update(window.id, {focused: true});
                   }
