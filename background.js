@@ -1,9 +1,19 @@
 const options = {};
 
+chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+  if(changeInfo.url != undefined && changeInfo.url != "chrome://newtab/")
+  {
+    processTabs(tabId, changeInfo.url);
+  }
+});
+
 chrome.tabs.onCreated.addListener((newTab) => 
 {
-  var newTabId = newTab.id;
+  processTabs(newTab.id, newTab.pendingUrl);
+});  
 
+function processTabs(newTabId, newTabUrl) 
+{
   //Get the settings
   chrome.storage.sync.get('options', (data) => 
   {
@@ -15,13 +25,13 @@ chrome.tabs.onCreated.addListener((newTab) =>
     }
 
     var domains = options.domains.toLowerCase().split(/\r?\n/);
-    var newTabUrl = newTab.pendingUrl.toLowerCase();
+    var newTabUrlLowered = newTabUrl.toLowerCase();
   
     var matchesDomain = false;
   
     for(var domainIndex = 0; domainIndex < domains.length; domainIndex++)
     {
-      if(newTabUrl.includes(domains[domainIndex]))
+      if(newTabUrlLowered.includes(domains[domainIndex]))
       {
         matchesDomain = true;
         break;
@@ -31,7 +41,7 @@ chrome.tabs.onCreated.addListener((newTab) =>
     //Get and iterate the tabs
     if(matchesDomain)
     {
-      var newUrl = new URL(newTab.pendingUrl.replace("_",""));
+      var newUrl = new URL(newTabUrl.replace("_",""));
 
       chrome.windows.getAll({populate:true},function(windows) 
       {
@@ -73,5 +83,5 @@ chrome.tabs.onCreated.addListener((newTab) =>
       });
     }
   });
-});  
+}
 
