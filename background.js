@@ -1,6 +1,7 @@
 const options = {};
 
-chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => 
+{
   if(changeInfo.url != undefined && changeInfo.url != "chrome://newtab/")
   {
     processTabs(tabId, changeInfo.url);
