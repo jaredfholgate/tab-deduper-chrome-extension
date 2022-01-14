@@ -18,7 +18,7 @@ jobs:
       - name: Version the extension manifest
         run: |
           sudo apt-get install -y sed
-          sed -i "/s/1.0/$VERSION_NUMBER" manifest.json
+          sed -i "s/1.0/$VERSION_NUMBER" manifest.json
 
       - name: Zip the extension
         run: zip -r tab-deduper-chrome-extension-$VERSION_NUMBER.zip . -x ".git/*" ".github/*"
