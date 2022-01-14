@@ -15,7 +15,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Run a one-line script
+      - name: Version the extension manifest
+        run: sed -i "/s/1.0/$VERSION_NUMBER" manifest.json
+
+      - name: Zip the extension
         run: zip -r tab-deduper-chrome-extension-$VERSION_NUMBER.zip . -x ".git/*" ".github/*"
 
       - name: Upload a Build Artifact
