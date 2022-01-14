@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      VERSION_NUMBER: 1.0.${{ github.run_number }}
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Version the extension manifest
+        run: sed -i "s/1.0/$VERSION_NUMBER/" manifest.json
+
+      - name: Zip the extension
+        run: zip -r tab-deduper-chrome-extension-$VERSION_NUMBER.zip . -x ".git/*" ".github/*"
+
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v2.3.1
+        with:
+          name: tab-deduper-chrome-extension
+          path: tab-deduper-chrome-extension-${{ env.VERSION_NUMBER }}.zip
+          
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        
+        with:
+          tag_name: ${{ env.VERSION_NUMBER }}
+          body: |
+            CI Release for ${{ env.VERSION_NUMBER }}
+          files: tab-deduper-chrome-extension-${{ env.VERSION_NUMBER }}.zip
+      
+     
