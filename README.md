@@ -11,7 +11,7 @@ It has an options section that allows you to specify strings to match on separat
 
 E.g. 'mail.google.com' and 'calendar.google.com'
 
-If it finds a match for any of the strings in the url of a new tab (opened via a link) or an existing tab with a manully updated url, it will check for duplicates. If it finds a duplicate in any open Chrome window it, will switch focus to that tab and then close the tab that was just created or modified.
+If it finds a match for any of the strings in the url of a new tab (opened via a link) or an existing tab with a manully updated url, it will check for duplicates. If it finds a duplicate in any open Chrome window, it will switch focus to that tab and then close the tab that was just created or modified.
 
 
 ## Why does it exist?
