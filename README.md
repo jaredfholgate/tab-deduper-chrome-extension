@@ -16,4 +16,4 @@ If it finds a match for any of the strings in the url of a new tab (opened via a
 
 ## Why does it exist?
 
-I was trying to find an extension that did this and couldn't really find one that met my exacting requirments, so I thoight I'd have a go at writing one myself.
+I was trying to find an extension that did this and couldn't really find one that met my exacting requirments, so I thought I'd have a go at writing one myself.
