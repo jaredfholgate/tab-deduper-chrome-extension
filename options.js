@@ -5,9 +5,10 @@ chrome.storage.sync.get('options', (data) => {
   Object.assign(options, data.options);
   if(options.domains == undefined)
   {
-    options.domains = "calendar.google.com\r\nmail.google.com";
+    options.domains = "calendar.google.com\r\nmail.google.com[&view=pt&,&view=btop&]";
     chrome.storage.sync.set({options});
   }
+
   optionsForm.domains.value = options.domains;
 });
 

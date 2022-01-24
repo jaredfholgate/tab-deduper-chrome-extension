@@ -8,8 +8,11 @@
       </div>
       <textarea id="domains" name="domains" style="height: 500px; width: 600px;" ></textarea>
       <div>
-        Add domains or text you'd like to match on separated by a new line.
-        Only the domains specified will be de-duplicated.
+        Add domains or text you'd like to match on separated by a new line.<br/>
+        Only the domains specified will be de-duplicated.<br/>
+        For example 'mail.google.com' or 'calendar.google.com' will treat gmail and calendar as singletons.<br/>
+        You can specify a specific string in a url excludes it from being treated as a duplicate by adding it in square brackets as a comma separated list.<br/>
+        For example 'mail.google.com[&view=pt&,&view=btop&]' will exclude email printing and pop out windows in gmail from being closed.
       </div>
     </form>
   </body>
